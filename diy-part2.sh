@@ -20,7 +20,7 @@ sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' include/image.mk
 
 sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt VIP99 '/g" package/lean/default-settings/files/zzz-default-settings
 
-sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-P3TERX'/g" ./package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-L'/g" ./package/base-files/files/bin/config_generate
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.0.252/g' package/base-files/files/bin/config_generate
 #sed -i 's/192.168.1.1/192.168.0.252/g' ./package/lean/base-files/files/bin/config_generate

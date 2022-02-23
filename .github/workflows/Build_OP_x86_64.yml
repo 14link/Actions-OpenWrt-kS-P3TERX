@@ -8,8 +8,10 @@
 name: Build_x86_64
 
 on: 
-  release:
-    types: [published]
+  repository_dispatch:
+  workflow_dispatch:
+#release:
+  #  types: [published]
 
   #push:
   #  branches: 
@@ -60,8 +62,8 @@ jobs:
 
     - name: Clone source code
       env: 
-        REPO_URL: https://github.com/coolsnowwolf/lede
-        REPO_BRANCH: master
+        REPO_URL: https://github.com/Lienol/openwrt
+        REPO_BRANCH: 19.07
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
@@ -111,3 +113,9 @@ jobs:
       with:
         name: OpenWrt
         path: openwrt/bin
+
+- name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 2
+        keep_minimum_runs: 5

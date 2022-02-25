@@ -19,7 +19,7 @@ on:
         required: false
         default: 'false'
   schedule:
-    - cron: 0 22 * * 0,3
+    - cron: 0 22 * * 1,5
 
 
 env:
@@ -27,8 +27,8 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: lede.config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-lean.sh
+  DIY_P1_SH: diy-part1-lean.sh
+  DIY_P2_SH: diy-p2-lean.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false

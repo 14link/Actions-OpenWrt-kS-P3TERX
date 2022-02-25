@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-lienol
+name: Build OpenWrt-lienol-21.02
 
 on:
   repository_dispatch:
@@ -19,7 +19,7 @@ on:
         required: false
         default: 'false'
   schedule:
-    - cron: 0 22 * * 4
+    - cron: 0 22 * * 3
 
 
 env:
@@ -27,8 +27,8 @@ env:
   REPO_BRANCH: 21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 2102.config
-  DIY_P1_SH: diy-part1.sh
-  DIY_P2_SH: diy-lienol.sh
+  DIY_P1_SH: diy-part1-lienol.sh
+  DIY_P2_SH: diy-p2-lienol.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false

@@ -23,12 +23,11 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 #sed -i '$a src-git diy https://github.com/firker/diy-ziyong' feeds.conf.default
 #sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 #sed -i '$a src-git jerryk https://github.com/jerrykuku/openwrt-package' feeds.conf.default
-# sed -i '$a src-git bypass https://github.com/garypang13/openwrt-bypass' feeds.conf.default
 # mv -vf ../mt7621_phicomm_k2p.dts ./target/linux/ramips/dts/mt7621_phicomm_k2p.dts
 #　git clone https://github.com/vernesong/OpenClash.git package/OpenClash
 #svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/aliyundrive-webdav
 #svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
-git clone -b 18.06 https://github.com/garypang13/luci-theme-edge.git package/luci-theme-edge
+git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff

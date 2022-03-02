@@ -28,8 +28,8 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 #svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/aliyundrive-webdav
 #svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
 rm -rf ./package/feeds/kenzo/luci-theme-edge 
-git clone -b master https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
-git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+#git clone -b master https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
+#git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 

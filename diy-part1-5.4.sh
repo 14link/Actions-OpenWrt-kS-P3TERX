@@ -40,4 +40,5 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
+
 #git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan

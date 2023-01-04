@@ -82,8 +82,8 @@ jobs:
       #working-directory: /workdir
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-#        cd openwrt
-#        echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
+        cd openwrt
+    #    echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
            
    #     df -hT $PWD
    #     git clone $REPO_URL -b $REPO_BRANCH openwrt

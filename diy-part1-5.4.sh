@@ -37,7 +37,7 @@ sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 #rm -rf ./package/feeds/kenzo/luci-theme-edge 
 #git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 
-git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
+#git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
 git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 

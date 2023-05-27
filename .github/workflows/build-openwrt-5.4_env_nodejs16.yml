@@ -30,7 +30,7 @@ env:
   DIY_P1_SH: diy-part1-5.4.sh
   DIY_P2_SH: diy-p2.sh
   UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: false
+  UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
@@ -38,17 +38,9 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
-    - name: Maximize build space
-      uses: easimon/maximize-build-space@master
-      with:
-        root-reserve-mb: 43008
-        remove-dotnet: 'true'
-        remove-android: 'true'
-        remove-haskell: 'true'
-    
     - name: Checkout
       uses: actions/checkout@main
 

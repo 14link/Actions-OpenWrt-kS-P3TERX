@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-5.4
+name: Build OpenWrt-lienol-21.02
 
 on:
   repository_dispatch:
@@ -18,17 +18,17 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-  schedule:
-    - cron: 0 6 */10 * *
+ # schedule:
+ #   - cron: 0 21 * * 5
 
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: 21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: 5.config
-  DIY_P1_SH: diy-part1-5.4.sh
-  DIY_P2_SH: diy-p2.sh
+  CONFIG_FILE: 21.config
+  DIY_P1_SH: lienol-p1-21.sh
+  DIY_P2_SH: lienol-p2-21.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: false
   UPLOAD_COWTRANSFER: false
@@ -58,7 +58,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL https://github.com/14link/openwrt-list/raw/master/depends-ubuntu-2004)
+        sudo -E apt-get -qq install $(curl -fsSL https://github.com/14link/openwrt-list/raw/master/openwrt2102)
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"

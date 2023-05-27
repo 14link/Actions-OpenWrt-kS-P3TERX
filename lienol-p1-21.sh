@@ -15,12 +15,12 @@
 
 # Add a feed source
 
-sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_TESTING_PATCHVER:=6.1/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_TESTING_PATCHVER:=5.15/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-sed -i 's/KERNEL_TESTING_PATCHVER:=5.10/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_TESTING_PATCHVER:=6.1/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_TESTING_PATCHVER:=5.15/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+#sed -i 's/KERNEL_TESTING_PATCHVER:=5.10/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
 
 sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
@@ -39,7 +39,7 @@ sed -i '$a src-git helloworld https://github.com/fw876/helloworld' feeds.conf.de
 
 #rm -rf ./package/feeds/kenzo/luci-theme-edge 
 
-git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
+git clone https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 git clone https://github.com/sirpdboy/luci-app-wizard package/luci-app-wizard

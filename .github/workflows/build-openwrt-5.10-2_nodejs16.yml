@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-5.15
+name: Build OpenWrt-5.10-2
 
 on:
   repository_dispatch:
@@ -18,8 +18,8 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-#  schedule:
-#    - cron: 0 6 5 * *
+  #schedule:
+  #  - cron: 0 18 * * 5
 
 
 env:
@@ -27,10 +27,10 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 5.config
-  DIY_P1_SH: diy-part1-5.15.sh
+  DIY_P1_SH: diy-part1-5.10.sh
   DIY_P2_SH: diy-p2.sh
   UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: false
+  UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
@@ -38,7 +38,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout

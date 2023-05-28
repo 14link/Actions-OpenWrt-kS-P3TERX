@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-lienol-21.02
+name: Build OpenWrt-5.10
 
 on:
   repository_dispatch:
@@ -19,16 +19,16 @@ on:
         required: false
         default: 'false'
   schedule:
-    - cron: 0 6 */10 * *
+    - cron: 0 10 * * 5
 
 
 env:
-  REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: 21.02
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: 21.config
-  DIY_P1_SH: lienol-p1-21.sh
-  DIY_P2_SH: lienol-p2-21.sh
+  CONFIG_FILE: 5.config
+  DIY_P1_SH: diy-part1-5.sh
+  DIY_P2_SH: diy-p2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -50,13 +50,12 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(curl -fsSL https://github.com/14link/openwrt-list/raw/master/openwrt2102)
+        sudo -E apt-get -qq install $(curl -fsSL https://github.com/14link/openwrt-list/raw/master/depends-ubuntu-2004)
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-    #    sudo -E apt-get -qq install $(curl -fsSL https://github.com/firkerword/openwrt-list/raw/master/depends-ubuntu-2004)
 
     - name: Clone source code
       working-directory: /workdir
@@ -168,10 +167,10 @@ jobs:
       run: |
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT        
         touch release.txt
-        echo "功能介绍：包含仿iStoreOS引导设置、Passwall、SSR、iStore应用商店、Dockerman、DDNS、samba、Openclash、屏蔽大师、ADG、UPnP等。其他应用可以自行在应用商店选择安装。" >> release.txt
-        echo "[固件源码](https://github.com/Lienol/openwrt)" >> release.txt
+        echo "功能介绍：包含Passwall、SSR、iStore应用商店、Dockerman、DDNS、samba、屏蔽大师、ADG、smartdns、UPnP等。其他应用可以自行在应用商店选择安装。" >> release.txt
+        echo "[固件源码](https://github.com/coolsnowwolf/lede)" >> release.txt
         echo "由衷感谢所有为openwrt无私奉献的大佬们" >> release.txt
-        echo "📥 固件下载" >> release.txt        
+        echo "📥 固件下载" >> release.txt    
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
@@ -182,7 +181,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        name: ${{ env.FILE_TIME }} 「 openwrt-lienol-21-X86-64 」
+        name: ${{ env.FILE_TIME }} 「 openwrt-5.4-X86-64 」
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*

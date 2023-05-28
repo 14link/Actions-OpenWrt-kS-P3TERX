@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-5.10
+name: Build OpenWrt-lienol-21.02
 
 on:
   repository_dispatch:
@@ -19,18 +19,18 @@ on:
         required: false
         default: 'false'
   schedule:
-    - cron: 0 0 5 * *
+    - cron: 0 5 */10 * *
 
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/Lienol/openwrt
+  REPO_BRANCH: 21.02
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: 5.config
-  DIY_P1_SH: diy-part1-5.10.sh
-  DIY_P2_SH: diy-p2.sh
+  CONFIG_FILE: 21.config
+  DIY_P1_SH: lienol-p1-21.sh
+  DIY_P2_SH: lienol-p2-21.sh
   UPLOAD_BIN_DIR: true
-  UPLOAD_FIRMWARE: false
+  UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
@@ -38,56 +38,35 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Initialization environment
+    - name: 安装编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        set +e
-        docker rmi `docker images -q`
-        echo "Deleting files, please wait ..."
-        sudo rm -rf \
-          /usr/share/dotnet \
-          /etc/mysql \
-          /etc/php
-        sudo -E apt-get -y purge \
-          azure-cli \
-          ghc* \
-          zulu* \
-          hhvm \
-          llvm* \
-          firefox \
-          google* \
-          dotnet* \
-          powershell \
-          openjdk* \
-          mysql* \
-          php*
-        sudo -E apt-get update
-        sudo -E apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync
-        sudo -E apt-get -y autoremove --purge
-        sudo -E apt-get clean
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install $(curl -fsSL https://github.com/14link/openwrt-list/raw/master/openwrt2102)
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
-    #    sudo mkdir -p /workdir
-    #    sudo chown $USER:$GROUPS /workdir
-
-
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
+    #    sudo -E apt-get -qq install $(curl -fsSL https://github.com/firkerword/openwrt-list/raw/master/depends-ubuntu-2004)
 
     - name: Clone source code
-      #working-directory: /workdir
+      working-directory: /workdir
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        cd openwrt
-    #    echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
-           
-   #     df -hT $PWD
-   #     git clone $REPO_URL -b $REPO_BRANCH openwrt
+        df -hT $PWD
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+   #     git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
    #     ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+   #     df -hT $PWD
 
     - name: Load custom feeds
       run: |
@@ -113,9 +92,9 @@ jobs:
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
-      env:
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+    #  env:
+    #    TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    #    TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: Download package
       id: package
@@ -187,8 +166,12 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT       
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT        
         touch release.txt
+        echo "功能介绍：包含Passwall、SSR、iStore应用商店、Dockerman、DDNS、samba、屏蔽大师、ADG、smartdns、UPnP等。其他应用可以自行在应用商店选择安装。" >> release.txt
+        echo "[固件源码](https://github.com/Lienol/openwrt)" >> release.txt
+        echo "由衷感谢所有为openwrt无私奉献的大佬们" >> release.txt
+        echo "📥 固件下载" >> release.txt        
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
@@ -199,7 +182,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        name: ${{ env.FILE_TIME }} 「 openwrt-5.10-X86-64 」
+        name: ${{ env.FILE_TIME }} 「 openwrt-lienol-21-X86-64 」
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
@@ -207,8 +190,8 @@ jobs:
     - name: Delete workflow runs
       uses: FunctionXJB/delete-workflow-runs@main
       with:
-        retain_days: 2
-        keep_minimum_runs: 3
+        retain_days: 150
+        keep_minimum_runs: 5
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master

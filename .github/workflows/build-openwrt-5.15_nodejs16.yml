@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-5.4
+name: Build OpenWrt-5.15
 
 on:
   repository_dispatch:
@@ -19,7 +19,7 @@ on:
         required: false
         default: 'false'
   schedule:
-    - cron: 0 5 * * 5
+    - cron: 0 15 * * 5
 
 
 env:
@@ -27,7 +27,7 @@ env:
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: 5.config
-  DIY_P1_SH: diy-part1-54.sh
+  DIY_P1_SH: diy-part1-5.sh
   DIY_P2_SH: diy-p2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
@@ -56,7 +56,6 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-    #    sudo -E apt-get -qq install $(curl -fsSL https://github.com/firkerword/openwrt-list/raw/master/depends-ubuntu-2004)
 
     - name: Clone source code
       working-directory: /workdir

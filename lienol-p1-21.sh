@@ -43,8 +43,8 @@ sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages' feeds.co
 #rm -rf ./package/feeds/kenzo/luci-theme-edge 
 
 #git clone https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
-git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
-git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
-git clone https://github.com/sirpdboy/luci-app-wizard package/luci-app-wizard
+#git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
+#git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+#git clone https://github.com/sirpdboy/luci-app-wizard package/luci-app-wizard
 #git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
 #git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd

@@ -199,7 +199,7 @@ jobs:
     - name: Delete workflow runs
       uses: FunctionXJB/delete-workflow-runs@main
       with:
-        retain_days: 45
+        retain_days: 99
         keep_minimum_runs: 5
 
     - name: Remove old Releases

@@ -142,6 +142,7 @@ jobs:
         find -name "*esxi.vmdk*" | xargs -i mv -f {} packages        
         find -name "*sha256sums*" | xargs -i rm -rf {}
         find -name "*version.buildinfo*" | xargs -i rm -rf {}
+        find -name "*feeds.buildinfo*" | xargs -i rm -rf {}
         find -name "*profiles.json*" | xargs -i rm -rf {}        
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV

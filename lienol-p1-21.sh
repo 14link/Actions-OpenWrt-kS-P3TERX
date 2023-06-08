@@ -15,38 +15,38 @@
 
 # Add a feed source
 
-#sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-#sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-#sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-#sed -i 's/KERNEL_TESTING_PATCHVER:=6.1/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-#sed -i 's/KERNEL_TESTING_PATCHVER:=5.15/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
-#sed -i 's/KERNEL_TESTING_PATCHVER:=5.10/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+	#	 sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+	#	 sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+	#	 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+	#	 sed -i 's/KERNEL_TESTING_PATCHVER:=6.1/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+	#	 sed -i 's/KERNEL_TESTING_PATCHVER:=5.15/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
+	#	 sed -i 's/KERNEL_TESTING_PATCHVER:=5.10/KERNEL_TESTING_PATCHVER:=5.4/g' ./target/linux/x86/Makefile
 
-#sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages' feeds.conf.default
+	#	 sed -i '$a src-git kiddin9 https://github.com/kiddin9/openwrt-packages' feeds.conf.default
 
-sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-#sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+		sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+	#	 sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
-sed -i '$a src-git ssrp https://github.com/fw876/helloworld' feeds.conf.default
-#sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
+		sed -i '$a src-git ssrp https://github.com/fw876/helloworld' feeds.conf.default
+	#	 sed -i '$a src-git passwall https://github.com/xiaorouji/openwrt-passwall' feeds.conf.default
 git clone https://github.com/xiaorouji/openwrt-passwall.git package/openwrt-passwall
 git clone -b luci https://github.com/xiaorouji/openwrt-passwall package/passwall
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
-#echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
-#echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
+	#	 echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
+	#	 echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 
-#sed -i '$a src-git diy https://github.com/firker/diy-ziyong' feeds.conf.default
-#sed -i '$a src-git jerryk https://github.com/jerrykuku/openwrt-package' feeds.conf.default
-# mv -vf ../mt7621_phicomm_k2p.dts ./target/linux/ramips/dts/mt7621_phicomm_k2p.dts
-#　git clone https://github.com/vernesong/OpenClash.git package/OpenClash
-#svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/aliyundrive-webdav
-#svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
+	#	 sed -i '$a src-git diy https://github.com/firker/diy-ziyong' feeds.conf.default
+	#	 sed -i '$a src-git jerryk https://github.com/jerrykuku/openwrt-package' feeds.conf.default
+	#	 mv -vf ../mt7621_phicomm_k2p.dts ./target/linux/ramips/dts/mt7621_phicomm_k2p.dts
+	#	 git clone https://github.com/vernesong/OpenClash.git package/OpenClash
+	#	 svn co https://github.com/messense/aliyundrive-webdav/trunk/openwrt package/aliyundrive-webdav
+	#	 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
 
-#rm -rf ./package/feeds/kenzo/luci-theme-edge 
+	#	 rm -rf ./package/feeds/kenzo/luci-theme-edge 
 
-#git clone https://github.com/sirpdboy/luci-app-wizard package/luci-app-wizard
-#git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
-#git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd
+	#	 git clone https://github.com/sirpdboy/luci-app-wizard package/luci-app-wizard
+	#	 git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
+	#	 git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd

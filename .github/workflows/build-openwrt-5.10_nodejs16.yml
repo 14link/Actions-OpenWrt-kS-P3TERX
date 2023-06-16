@@ -18,8 +18,8 @@ on:
 #        description: 'SSH connection to Actions'
 #        required: false
 #        default: 'false'
-#  schedule:
-#    - cron: 5 10 * * 2
+  schedule:
+    - cron: 5 10 4,19 * *
 
 
 env:

@@ -20,7 +20,6 @@ on:
 #        default: 'false'
   schedule:
     - cron: 0 16 * * 5
-#    - cron: 5 4 * * 1,3,6
 
 
 env:

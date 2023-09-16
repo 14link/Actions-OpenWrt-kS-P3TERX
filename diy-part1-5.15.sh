@@ -20,7 +20,6 @@
 		sed -i '$a src-git diypkg https://github.com/14link/diy-package' feeds.conf.default
 		sed -i 's/PATCHVER:=6.1/PATCHVER:=5.15/g' target/linux/x86/Makefile
 
-    #    sed -i 's/PATCHVER:=5.15/PATCHVER:=5.15/g' target/linux/x86/Makefile
 	#	 sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.15/g' ./target/linux/x86/Makefile
 	#	 sed -i 's/KERNEL_PATCHVER:=5.10/KERNEL_PATCHVER:=5.15/g' ./target/linux/x86/Makefile
 	#	 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.15/g' ./target/linux/x86/Makefile
@@ -47,5 +46,3 @@
 	#	git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 	#	git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 	#	git clone https://github.com/sirpdboy/luci-app-wizard package/luci-app-wizard
-	#	 git clone https://github.com/tty228/luci-app-serverchan.git package/luci-app-serverchan
-	#	 git clone https://github.com/sirpdboy/luci-theme-opentopd.git package/luci-theme-opentopd

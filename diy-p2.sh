@@ -26,7 +26,7 @@
 		sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt [$(TZ=UTC-8 date "+%Y.%m.%d")] Compiled by kSir '/g" package/lean/default-settings/files/zzz-default-settings
 		sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-kSir'/g" ./package/base-files/files/bin/config_generate
 		#调整&&去重,删除不使用的源文件
-		rm -rf ./feeds/luci/applications/luci-app-netdata
+	#	rm -rf ./feeds/luci/applications/luci-app-netdata
 		rm -rf ./package/lean/autosamba
 	#	rm -rf package/lean/autosamba
 

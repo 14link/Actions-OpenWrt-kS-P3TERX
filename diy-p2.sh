@@ -27,7 +27,7 @@
 		sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-kSir'/g" ./package/base-files/files/bin/config_generate
 		#调整&&去重,删除不使用的源文件
 		rm -rf ./package/lean/autosamba
-	#	rm -rf ./feeds/luci/applications/luci-app-netdata
+		rm -rf ./feeds/luci/applications/luci-app-netdata
 	#	rm -rf package/lean/autosamba
 
 		git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata

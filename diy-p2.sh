@@ -30,7 +30,8 @@
 	#	rm -rf ./feeds/luci/applications/luci-app-netdata
 	#	rm -rf package/lean/autosamba
 
-
+		git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
+		
 	#	  sed -i '60s/ITdesk01/firkerword/' ./package/jd_openwrt_script/files/jd_openwrt_script
 	#	  rm -rf ./package/lean/dnsforwarder
 	#	  rm -rf ./package/lean/luci-theme-argon

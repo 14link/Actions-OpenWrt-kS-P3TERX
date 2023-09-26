@@ -203,7 +203,6 @@ jobs:
     - name: Delete workflow runs
       uses: FunctionXJB/delete-workflow-runs@main
       with:
-        token: ${{ secrets.REPO_TOKEN }}
         retain_days: 10
         keep_minimum_runs: 5
        

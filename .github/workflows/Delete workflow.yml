@@ -46,6 +46,4 @@ jobs:
       with:
         retain_days: 5
         keep_minimum_runs: 5
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}  
 

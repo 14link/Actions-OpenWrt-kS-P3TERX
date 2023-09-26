@@ -201,12 +201,10 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
-      uses: FunctionXJB/delete-workflow-runs@main
+      uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 10
+        retain_days: 1
         keep_minimum_runs: 5
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master

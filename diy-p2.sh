@@ -24,14 +24,15 @@
 	#	 sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' include/image.mk
 	#	 sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' include/image.mk
 		sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt [$(TZ=UTC-8 date "+%Y.%m.%d")] Compiled by kSir '/g" package/lean/default-settings/files/zzz-default-settings
-		sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-kSir'/g" ./package/base-files/files/bin/config_generate
+		sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-kS'/g" ./package/base-files/files/bin/config_generate
 		#调整&&去重,删除不使用的源文件
 		rm -rf ./package/lean/autosamba
 		rm -rf ./feeds/luci/applications/luci-app-netdata
 	#	rm -rf package/lean/autosamba
 
+		git clone https://github.com/sirpdboy/autosamba package/autosamba
 		git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
-		
+
 	#	  sed -i '60s/ITdesk01/firkerword/' ./package/jd_openwrt_script/files/jd_openwrt_script
 	#	  rm -rf ./package/lean/dnsforwarder
 	#	  rm -rf ./package/lean/luci-theme-argon

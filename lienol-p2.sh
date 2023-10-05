@@ -28,7 +28,7 @@ sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-kS'/g" ./package/base-files/files
 		
 #git clone https://github.com/sirpdboy/autosamba package/autosamba
 #git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
-rm -rf ./feeds/kenzo/luci-app-mosdns
+#rm -rf ./feeds/kenzo/luci-app-mosdns
 #rm -rf ./feeds/kenzo/luci-app-ddnsto
 
 

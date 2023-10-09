@@ -39,7 +39,7 @@ rm -rf ./feeds/kenzo/luci-theme-ifit
 rm -rf ./feeds/kenzo/luci-theme-opentopd
 rm -rf ./feeds/kenzo/luci-theme-tomato
 rm -rf ./feeds/kenzo/luci-app-mosdns
-rm -rf ./feeds/kenzo/*passwall*
+rm -rf ./feeds/small/*passwall*
 
 git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon

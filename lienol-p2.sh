@@ -25,13 +25,27 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/default-settings/files/
 #sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' include/image.mk
 sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt [$(TZ=UTC-8 date "+%Y.%m.%d")] Compiled by kSir '/g" package/default-settings/files/zzz-default-settings
 sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-kS'/g" ./package/base-files/files/bin/config_generate
-		
-#git clone https://github.com/sirpdboy/autosamba package/autosamba
-#git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
-#rm -rf ./feeds/kenzo/luci-app-mosdns
-#rm -rf ./feeds/kenzo/luci-app-ddnsto
 
+rm -rf ./feeds/luci/themes/luci-theme-argon
+rm -rf ./feeds/luci/themes/luci-theme-argon-config
+rm -rf ./feeds/kenzo/luci-theme-argon
+rm -rf ./feeds/kenzo/luci-theme-argone
+rm -rf ./feeds/kenzo/luci-theme-argon-config
+rm -rf ./feeds/kenzo/luci-app-argone-config
+rm -rf ./feeds/kenzo/luci-theme-atmaterial_new
+rm -rf ./feeds/kenzo/luci-theme-design
+rm -rf ./feeds/kenzo/luci-theme-design-config
+rm -rf ./feeds/kenzo/luci-theme-ifit
+rm -rf ./feeds/kenzo/luci-theme-opentopd
+rm -rf ./feeds/kenzo/luci-theme-tomato
+rm -rf ./feeds/kenzo/luci-app-mosdns
+rm -rf ./feeds/kenzo/*passwall*
 
+git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
+git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
+
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
 # curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/19.07/net/https-dns-proxy/files/https-dns-proxy.config > ./feeds/packages/net/https-dns-proxy/files/https-dns-proxy.config
 # curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/19.07/net/https-dns-proxy/files/https-dns-proxy.init > ./feeds/packages/net/https-dns-proxy/files/https-dns-proxy.init

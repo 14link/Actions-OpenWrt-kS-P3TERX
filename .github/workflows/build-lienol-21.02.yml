@@ -18,8 +18,8 @@ on:
 #        description: 'SSH connection to Actions'
 #        required: false
 #        default: 'false'
-#  schedule:
-#    - cron: 0 16 * * *
+  schedule:
+    - cron: 0 16 * * *
 
 
 env:
@@ -203,10 +203,10 @@ jobs:
         files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
-      uses: FunctionXJB/delete-workflow-runs@main
+      uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 45
-        keep_minimum_runs: 5
+        retain_days: 10
+        keep_minimum_runs: 0
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master

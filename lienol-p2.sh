@@ -41,7 +41,7 @@ rm -rf ./feeds/kenzo/luci-theme-tomato
 #rm -rf ./feeds/kenzo/luci-app-mosdns
 #rm -rf ./feeds/small/*passwall*
 #mosdns
-rm -rf feeds/packages/lang/golang
+rm -rf ./feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 rm -rf feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns

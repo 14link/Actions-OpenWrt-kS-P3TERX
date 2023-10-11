@@ -49,10 +49,10 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 #netdata
 git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
 #add主题
-#git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
 git clone https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
+#git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
 #更换默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 

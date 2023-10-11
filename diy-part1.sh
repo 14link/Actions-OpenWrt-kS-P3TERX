@@ -19,9 +19,6 @@
 		
 		sed -i '$a src-git diypkg https://github.com/14link/diy-package' feeds.conf.default
 		
-        sed -i 's/PATCHVER:=5.15/PATCHVER:=5.10/g' target/linux/x86/Makefile
-        sed -i 's/PATCHVER:=6.1/PATCHVER:=5.10/g' target/linux/x86/Makefile
-
 	#	 sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 	#	 sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 	#	 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile

@@ -38,7 +38,7 @@ rm -rf ./feeds/kenzo/luci-theme-design-config
 rm -rf ./feeds/kenzo/luci-theme-ifit
 rm -rf ./feeds/kenzo/luci-theme-opentopd
 rm -rf ./feeds/kenzo/luci-theme-tomato
-#rm -rf ./feeds/kenzo/luci-app-mosdns
+rm -rf ./feeds/kenzo/luci-app-mosdns
 #rm -rf ./feeds/small/*passwall*
 #mosdns
 rm -rf ./feeds/packages/lang/golang

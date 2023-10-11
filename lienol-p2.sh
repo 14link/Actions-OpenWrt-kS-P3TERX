@@ -46,10 +46,11 @@ git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/l
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-#
-git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
-git clone https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
+#netdata
 git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
+#主题
+#git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
+git clone https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
 #更换默认主题

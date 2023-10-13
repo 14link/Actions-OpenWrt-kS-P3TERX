@@ -60,7 +60,7 @@ jobs:
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
 
-    - name: Checkout OpenWrt
+     - name: Checkout OpenWrt
        uses: actions/checkout@v3
       
     - name: Clone source code

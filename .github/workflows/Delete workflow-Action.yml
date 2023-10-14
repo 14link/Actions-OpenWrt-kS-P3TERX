@@ -46,4 +46,4 @@ jobs:
       with:
         token: ${{ secrets.REPO_TOKEN }}
         repository: ${{ github.repository }}
-        keep_minimum_runs: 10
+        keep_minimum_runs: 30

@@ -220,7 +220,7 @@ jobs:
       uses: FunctionXJB/delete-workflow-runs@main
       with:
         retain_days: 1
-        keep_minimum_runs: 24
+        keep_minimum_runs: 45
 
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master

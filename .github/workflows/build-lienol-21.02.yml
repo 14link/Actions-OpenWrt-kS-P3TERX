@@ -19,7 +19,7 @@ on:
 #        required: false
 #        default: 'false'
   schedule:
-    - cron: 0 9 * * 3
+    - cron: 0 7 * * 3
 
 
 env:

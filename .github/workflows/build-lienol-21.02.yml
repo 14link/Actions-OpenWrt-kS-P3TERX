@@ -219,7 +219,7 @@ jobs:
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 20
+        retain_days: 45
         keep_minimum_runs: 0
 
     - name: Remove old Releases

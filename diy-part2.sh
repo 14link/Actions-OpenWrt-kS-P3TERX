@@ -18,7 +18,7 @@
 # 1.Modify default IP
 		sed -i 's/192.168.1.1/192.168.0.252/g' package/base-files/files/bin/config_generate
 	#	 sed -i 's/192.168.1.1/192.168.0.252/g' ./package/lean/base-files/files/bin/config_generate
-#2. Clear the login password
+# 2. Clear the login password
 		sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/files/zzz-default-settings
 
 	#	 sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' include/image.mk
@@ -26,11 +26,12 @@
 		sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt [$(TZ=UTC-8 date "+%Y.%m.%d")] Compiled by kSir '/g" package/lean/default-settings/files/zzz-default-settings
 		sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-kS'/g" ./package/base-files/files/bin/config_generate
 		#调整&&去重,删除不使用的源文件
-	#	rm -rf ./package/lean/autosamba
+		rm -rf ./package/lean/autosamba
 		rm -rf ./feeds/luci/applications/luci-app-netdata
+	#	rm -rf ./feeds/small/*bypass* ./feeds/small/*vssr*
 	#	rm -rf package/lean/autosamba
 
-	#	git clone https://github.com/sirpdboy/autosamba package/autosamba
+		git clone https://github.com/sirpdboy/autosamba package/autosamba
 		git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
 		git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 	#	git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge

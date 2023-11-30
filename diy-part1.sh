@@ -11,14 +11,14 @@
 #
 
 # Uncomment a feed source
-#sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
+# sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 
 # Add a feed source
         sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
 		sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 		
 		sed -i '$a src-git diypkg https://github.com/14link/diy-package' feeds.conf.default
-		
+				
 	#	 sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 	#	 sed -i 's/KERNEL_PATCHVER:=5.4/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
 	#	 sed -i 's/KERNEL_PATCHVER:=6.1/KERNEL_PATCHVER:=5.10/g' ./target/linux/x86/Makefile
@@ -65,4 +65,3 @@
 	#	git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 	#	git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 	#	git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
-	#	git clone https://github.com/sirpdboy/luci-app-wizard package/luci-app-wizard

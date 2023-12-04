@@ -17,15 +17,15 @@
 
 # 1.Modify default IP
 sed -i 's/192.168.1.1/192.168.0.252/g' package/base-files/files/bin/config_generate
-#sed -i 's/192.168.1.1/192.168.0.252/g' ./package/lean/base-files/files/bin/config_generate
-#2. Clear the login password
+# sed -i 's/192.168.1.1/192.168.0.252/g' ./package/lean/base-files/files/bin/config_generate
+# 2. Clear the login password
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/default-settings/files/zzz-default-settings
 
-#sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' include/image.mk
-#sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' include/image.mk
+# sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' include/image.mk
+# sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' include/image.mk
 sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt [$(TZ=UTC-8 date "+%Y.%m.%d")] Compiled by k4 '/g" package/default-settings/files/zzz-default-settings
 sed -i "s/hostname='OpenWrt'/hostname='OpenWrt-k'/g" ./package/base-files/files/bin/config_generate
-#删除主题
+# 删除主题
 rm -rf ./feeds/luci/themes/luci-theme-argon
 rm -rf ./feeds/luci/themes/luci-theme-argon-config
 rm -rf ./feeds/kenzo/luci-theme-argon
@@ -39,22 +39,22 @@ rm -rf ./feeds/kenzo/luci-theme-ifit
 rm -rf ./feeds/kenzo/luci-theme-opentopd
 rm -rf ./feeds/kenzo/luci-theme-tomato
 rm -rf ./feeds/kenzo/luci-app-mosdns
-#rm -rf ./feeds/small/*passwall*
-#mosdns
+# rm -rf ./feeds/small/*passwall*
+# mosdns
 rm -rf ./feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-#netdata
-rm -rf ./feeds/luci/applications/luci-app-netdata
-git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
-#add主题
+# netdata
+# rm -rf ./feeds/luci/applications/luci-app-netdata
+# git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
+# add主题
 git clone https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
 git clone https://github.com/jerrykuku/luci-app-argon-config.git package/luci-app-argon-config
-#git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
-#更换默认主题
+# git clone https://github.com/sirpdboy/luci-theme-kucat.git package/luci-theme-kucat
+# 更换默认主题
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' ./feeds/luci/collections/luci/Makefile
 
 # curl -fsSL  https://raw.githubusercontent.com/Lienol/openwrt-packages/19.07/net/https-dns-proxy/files/https-dns-proxy.config > ./feeds/packages/net/https-dns-proxy/files/https-dns-proxy.config

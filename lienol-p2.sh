@@ -47,6 +47,7 @@ rm -rf ./feeds/packages/net/v2ray-geodata
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 #netdata
+rm -rf ./feeds/luci/applications/luci-app-netdata
 git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
 #add主题
 git clone https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge

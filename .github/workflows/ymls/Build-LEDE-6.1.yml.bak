@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-lede-5.15
+name: Build OpenWrt-lede-6.1
 
 on:
   repository_dispatch:
@@ -19,14 +19,14 @@ on:
 #        required: false
 #        default: 'false'
 #  schedule:
-#    - cron: 0 16 * * 5
+#    - cron: 0 16 * * 6
 
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: 5.config
+  CONFIG_FILE: 6.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -58,14 +58,6 @@ jobs:
         echo -e "$(sudo lshw -short -C memory | grep GiB) \n"
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT  
-
-    # - name: free disk space
-      # run: | 
-        # sudo swapoff -a
-        # sudo rm -f /swapfile
-        # sudo apt clean
-        # docker rmi $(docker image ls -aq)
-        # df -h
         
     - name: 清理磁盘空间
       uses: jlumbroso/free-disk-space@main
@@ -102,23 +94,6 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
-        echo
-        echo " 系统空间      类型   总数  已用  可用 使用率"
-        df -hT $PWD
-
-    - name: 释放Ubuntu磁盘空间
-      uses: jlumbroso/free-disk-space@main
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: false
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        swap-storage: true
 
     - name: Clone source code
       working-directory: /workdir
@@ -130,8 +105,7 @@ jobs:
         useVersionInfo=$(git show -s --date=short --format="%0AAuthor: %an%0Adate: %cd%0Acommit: %s%0Acommit hash: %H")
         echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
         echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
-        sed -i 's/PATCHVER:=6.1/PATCHVER:=5.15/g' target/linux/x86/Makefile        
-        sed -i 's/PATCHVER:=6.6/PATCHVER:=5.15/g' target/linux/x86/Makefile 
+        
    #     git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
    #     ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
    #     df -hT $PWD
@@ -216,7 +190,10 @@ jobs:
         find -name "*.manifest*" | xargs -i mv -f {} packages
         find -name "*vmlinuz*" | xargs -i mv -f {} packages
         find -name "*esxi.vmdk*" | xargs -i mv -f {} packages        
-        find -name "*profiles.json*" | xargs -i rm -rf {} packages
+        find -name "*sha256sums*" | xargs -i rm -rf {}
+        find -name "*version.buildinfo*" | xargs -i rm -rf {}
+        find -name "*feeds.buildinfo*" | xargs -i rm -rf {}
+        find -name "*profiles.json*" | xargs -i rm -rf {}
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
@@ -270,7 +247,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
       with:
-        name: ${{ env.FILE_TIME }} 「 openwrt-5.15-X86-64 」
+        name: ${{ env.FILE_TIME }} 「 openwrt-6.1-X86-64-pw 」
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
         files: ${{ env.FIRMWARE }}/*
@@ -278,9 +255,9 @@ jobs:
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 10
-        keep_minimum_runs: 10
-        
+        retain_days: 1
+        keep_minimum_runs: 45
+              
     - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@master
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()

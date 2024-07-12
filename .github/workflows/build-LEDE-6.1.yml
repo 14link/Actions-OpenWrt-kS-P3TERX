@@ -34,6 +34,7 @@ env:
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
+  CACHE_BUILD: true
   TZ: Asia/Shanghai
 
 jobs:
@@ -57,22 +58,30 @@ jobs:
         echo -e "$(sudo lshw -short -C memory | grep GiB) \n"
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT  
-        
-    - name: 清理磁盘空间
-      uses: jlumbroso/free-disk-space@main
-      with:
-        # this might remove tools that are actually needed,
-        # if set to "true" but frees about 6 GB
-        tool-cache: false
 
-        # all of these default to true, but feel free to set to
-        # "false" if necessary for your workflow
-        android: true
-        dotnet: true
-        haskell: true
-        large-packages: true
-        docker-images: true
-        swap-storage: true
+    # - name: free disk space
+      # run: | 
+        # sudo swapoff -a
+        # sudo rm -f /swapfile
+        # sudo apt clean
+        # docker rmi $(docker image ls -aq)
+        # df -h
+        
+    # - name: 清理磁盘空间
+      # uses: jlumbroso/free-disk-space@main
+      # with:
+        # # this might remove tools that are actually needed,
+        # # if set to "true" but frees about 6 GB
+        # tool-cache: false
+
+        # # all of these default to true, but feel free to set to
+        # # "false" if necessary for your workflow
+        # android: true
+        # dotnet: true
+        # haskell: true
+        # large-packages: true
+        # docker-images: true
+        # swap-storage: true
 
     - name: 安装编译环境
       env:
@@ -93,6 +102,23 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         sudo mkdir -p /workdir
         sudo chown $USER:$GROUPS /workdir
+        echo
+        echo " 系统空间      类型   总数  已用  可用 使用率"
+        df -hT $PWD
+
+    - name: 释放Ubuntu磁盘空间
+      uses: jlumbroso/free-disk-space@main
+      with:
+        # this might remove tools that are actually needed,
+        # if set to "true" but frees about 6 GB
+        tool-cache: false
+        # all of these default to true, but feel free to set to
+        # "false" if necessary for your workflow
+        android: true
+        dotnet: true
+        haskell: true
+        large-packages: true
+        swap-storage: true
 
     - name: Clone source code
       working-directory: /workdir
@@ -103,11 +129,18 @@ jobs:
         cd openwrt
         useVersionInfo=$(git show -s --date=short --format="%0AAuthor: %an%0Adate: %cd%0Acommit: %s%0Acommit hash: %H")
         echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
-        echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV   
+        echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
         
    #     git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
    #     ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
    #     df -hT $PWD
+
+    - name: 缓存加速
+      uses: stupidloud/cachewrtbuild@main
+      if: env.CACHE_BUILD == 'true' || (github.event.inputs.CACHE_BUILD == 'true')
+      with:
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
 
     - name: Load custom feeds
       run: |
@@ -189,7 +222,11 @@ jobs:
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
-
+        
+    #    find -name "*sha256sums*" | xargs -i rm -rf {} packages
+    #    find -name "*version.buildinfo*" | xargs -i rm -rf {} packages
+    #    find -name "*feeds.buildinfo*" | xargs -i rm -rf {} packages
+    
     - name: Upload firmware directory
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()

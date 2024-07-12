@@ -58,14 +58,6 @@ jobs:
         echo -e "$(sudo lshw -short -C memory | grep GiB) \n"
         echo "--------------------------硬盘信息--------------------------"
         echo "硬盘数量：$(ls /dev/sd* | grep -v [1-9] | wc -l)" && df -hT  
-
-    # - name: free disk space
-      # run: | 
-        # sudo swapoff -a
-        # sudo rm -f /swapfile
-        # sudo apt clean
-        # docker rmi $(docker image ls -aq)
-        # df -h
         
     - name: 清理磁盘空间
       uses: jlumbroso/free-disk-space@main
@@ -129,7 +121,7 @@ jobs:
         cd openwrt
         useVersionInfo=$(git show -s --date=short --format="%0AAuthor: %an%0Adate: %cd%0Acommit: %s%0Acommit hash: %H")
         echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
-        echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
+        echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV        
         sed -i 's/PATCHVER:=6.1/PATCHVER:=5.15/g' target/linux/x86/Makefile        
         sed -i 's/PATCHVER:=6.6/PATCHVER:=5.15/g' target/linux/x86/Makefile 
    #     git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt

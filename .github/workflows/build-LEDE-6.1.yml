@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-lede-P3TERX
+name: Build OpenWrt-lede-P3TERX-6.1
 
 on:
   repository_dispatch:

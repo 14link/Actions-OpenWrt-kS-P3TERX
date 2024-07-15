@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-lede-5.10 P3
+name: Build OpenWrt-lede-5.15 P3
 
 on:
   repository_dispatch:
@@ -39,7 +39,7 @@ env:
 
 jobs:
   build:
-    name: Build OpenWrt-lede-5.10 P3
+    name: Build OpenWrt-lede-5.15 P3
     runs-on: ubuntu-latest
 
     steps:
@@ -115,8 +115,8 @@ jobs:
         useVersionInfo=$(git show -s --date=short --format="%0AAuthor: %an%0Adate: %cd%0Acommit: %s%0Acommit hash: %H")
         echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
         echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
-        sed -i 's/PATCHVER:=6.1/PATCHVER:=5.10/g' target/linux/x86/Makefile        
-        sed -i 's/PATCHVER:=6.6/PATCHVER:=5.10/g' target/linux/x86/Makefile 
+        sed -i 's/PATCHVER:=6.1/PATCHVER:=5.15/g' target/linux/x86/Makefile        
+        sed -i 's/PATCHVER:=6.6/PATCHVER:=5.15/g' target/linux/x86/Makefile 
    #     git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
    #     ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
    #     df -hT $PWD

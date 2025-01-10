@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-lede-6.1 P3
+name: Build OpenWrt-Lede P3
 
 on:
   repository_dispatch:
@@ -39,7 +39,7 @@ env:
 
 jobs:
   build:
-    name: Build OpenWrt-lede-6.1 P3
+    name: Build OpenWrt-Lede P3
     runs-on: ubuntu-latest
 
     steps:

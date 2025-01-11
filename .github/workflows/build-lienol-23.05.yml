@@ -27,7 +27,7 @@ env:
   REPO_BRANCH: 23.05
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: Lienol.config
-  DIY_P1_SH: lienol-p1.sh
+  DIY_P1_SH: Lienol-p1.sh
   DIY_P2_SH: Lienol-p2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true

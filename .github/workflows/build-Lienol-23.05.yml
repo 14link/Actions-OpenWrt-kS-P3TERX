@@ -39,11 +39,11 @@ env:
 jobs:
   build:
     name: Build OpenWrt-Lienol-23.05
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - name: Checkout
-      uses: actions/checkout@main
+      uses: actions/checkout@master
 
     - name: Check Server Performance
       run: |

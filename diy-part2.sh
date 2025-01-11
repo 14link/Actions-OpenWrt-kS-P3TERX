@@ -33,7 +33,7 @@ rm -rf ./feeds/luci/applications/luci-app-netdata
 
 git clone https://github.com/sirpdboy/autosamba package/autosamba
 git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
-git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
+# git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 # git clone -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
 
 # sed -i '60s/ITdesk01/firkerword/' ./package/jd_openwrt_script/files/jd_openwrt_script

@@ -13,9 +13,12 @@
 # Uncomment a feed source
 #sed -i 's/^#\(.*helloworld\)/\1/' feeds.conf.default
 # Add a feed source
-	sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
-	sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
-	sed -i '$a src-git diypkg https://github.com/14link/diy-package' feeds.conf.default
+        echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> ./feeds.conf.default
+        echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
+        echo "src-git diypkg https://github.com/14link/diy-package" >> ./feeds.conf.default
+	# sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+	# sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+	# sed -i '$a src-git diypkg https://github.com/14link/diy-package' feeds.conf.default
 	# sed -i 's/192.168.1.1/192.168.0.252/g' package/base-files/files/bin/config_generate
 	# sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/default-settings/files/zzz-default-settings
 	# sed -i '$a src-git diypkg https://github.com/14link/diy-package;22.03' feeds.conf.default

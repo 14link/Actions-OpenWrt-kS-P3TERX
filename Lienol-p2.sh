@@ -26,7 +26,7 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/default-settings/files/
 # sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' include/image.mk
 # sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' include/image.mk
 sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt [$(TZ=UTC-8 date "+%Y.%m.%d")] Compiled by KSir '/g" package/default-settings/files/zzz-default-settings
-sed -i "s/hostname='OpenWrt'/hostname='Lienol'/g" ./package/base-files/files/bin/config_generate
+sed -i "s/hostname='OpenWrt'/hostname='LienolWrt'/g" ./package/base-files/files/bin/config_generate
         rm -rf feeds/luci/applications/luci-app-mosdns
         rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,sing*}
         rm -rf feeds/packages/utils/v2dat

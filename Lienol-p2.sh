@@ -15,6 +15,8 @@
 #sed -i '/DTS_DIR:=$(LINUX_DIR)/a\BUILD_DATE_PREFIX := $(shell date +'%F')' include/image.mk
 #sed -i 's/IMG_PREFIX:=/IMG_PREFIX:=$(BUILD_DATE_PREFIX)-/g' include/image.mk
 
+# fix bios boot partition is under 1 MiB
+sed -i 's/256/1024/g' target/linux/x86/image/Makefile
 # 1.Modify default IP
 sed -i 's/192.168.1.1/192.168.0.252/g' package/base-files/files/bin/config_generate
 # sed -i 's/192.168.1.1/192.168.0.252/g' ./package/lean/base-files/files/bin/config_generate

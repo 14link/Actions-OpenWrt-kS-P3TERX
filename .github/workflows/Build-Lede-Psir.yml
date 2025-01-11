@@ -31,9 +31,9 @@ env:
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
+  UPLOAD_RELEASE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: true
   CACHE_BUILD: true
   TZ: Asia/Shanghai
 
@@ -115,12 +115,12 @@ jobs:
    #     ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
    #     df -hT $PWD
 
-    # - name: 缓存加速
-      # uses: stupidloud/cachewrtbuild@main
-      # if: env.CACHE_BUILD == 'true' || (github.event.inputs.CACHE_BUILD == 'true')
-      # with:
-        # ccache: 'true'
-        # prefix: ${{ github.workspace }}/openwrt
+    - name: 缓存加速
+      uses: stupidloud/cachewrtbuild@main
+      if: env.CACHE_BUILD == 'true' || (github.event.inputs.CACHE_BUILD == 'true')
+      with:
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
 
     - name: Load custom feeds
       run: |

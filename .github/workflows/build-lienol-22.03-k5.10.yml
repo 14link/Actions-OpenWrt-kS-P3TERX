@@ -26,9 +26,9 @@ env:
   REPO_URL: https://github.com/Lienol/openwrt
   REPO_BRANCH: 22.03
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: lienol.config
-  DIY_P1_SH: lienol-p1.sh
-  DIY_P2_SH: lienol-p2.sh
+  CONFIG_FILE: Lienol.config
+  DIY_P1_SH: Lienol-p1.sh
+  DIY_P2_SH: Lienol-p2.sh
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false

@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt-lede-5.15 P3
+name: Build OpenWrt-Lede-5.15 P3
 
 on:
   repository_dispatch:
@@ -26,7 +26,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: 5.config
+  CONFIG_FILE: lede.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: true
@@ -39,7 +39,7 @@ env:
 
 jobs:
   build:
-    name: Build OpenWrt-lede-5.15 P3
+    name: Build OpenWrt-Lede-5.15 P3
     runs-on: ubuntu-latest
 
     steps:
@@ -138,9 +138,6 @@ jobs:
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
 
-    - name: Install feeds
-      run: cd openwrt && ./scripts/feeds install -a
-
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
@@ -148,6 +145,9 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+
+    - name: Install feeds
+      run: cd openwrt && ./scripts/feeds install -a
 
 #    - name: SSH connection to Actions
 #      uses: P3TERX/ssh2actions@v1.0.0

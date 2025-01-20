@@ -28,10 +28,15 @@ sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/default-settings/files/
 sed -i "s/DISTRIB_DESCRIPTION='OpenWrt '/DISTRIB_DESCRIPTION='OpenWrt [$(TZ=UTC-8 date "+%Y.%m.%d")] Compiled by KSir '/g" package/default-settings/files/zzz-default-settings
 sed -i "s/hostname='OpenWrt'/hostname='LienolWrt'/g" ./package/base-files/files/bin/config_generate
         rm -rf feeds/luci/applications/luci-app-mosdns
-        rm -rf feeds/packages/net/{alist,adguardhome,mosdns,xray*,sing*}
-        rm -rf feeds/packages/utils/v2dat
+        rm -rf feeds/packages/net/{xray*,sing*}
+        rm -rf feeds/packages/net/v2ray-geodata
         rm -rf feeds/packages/lang/golang
         git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+        git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+        git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+        git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall-packages
+        git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+
 # add主题
 git clone https://github.com/kiddin9/luci-theme-edge.git package/luci-theme-edge
 # git clone https://github.com/jerrykuku/luci-theme-argon.git package/luci-theme-argon
